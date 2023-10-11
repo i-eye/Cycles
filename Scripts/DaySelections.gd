@@ -9,19 +9,41 @@ func _ready():
 	var todayColumn = today.weekday - 1
 	if(todayColumn == -1):
 		todayColumn = 6
-	var todayRow: int = floor(today.day / 7)
-	makeIcon(todayColumn,todayRow,today.day)
-	var backNumber = ((todayRow + 1) + (todayColumn - 1) * 7)
+	var todayRow: int = floor(today.day / 7) + 1
+	MakeIcon(todayColumn,todayRow,today.day)
+	var backNumber = ((todayRow) + (todayColumn) * 7)
 	var frontNumber = (5 - todayRow) + (4 - todayColumn) * 7
 	print(backNumber)
 	print(frontNumber)
+	for i in range(backNumber + 1):
+		var dayTemp = today.day - i
+		var monthTemp = today.month
+		var yearTemp = today.month
+		if(dayTemp < 1):
+			dayTemp += MonthLength(monthTemp,monthTemp)
+			monthTemp -= 1
+		var column = todayColumn - i
+		var row = todayRow
+		while(column < 0):
+			column += 7
+			row -=1
+		
+		MakeIcon(column,row,dayTemp, monthTemp == today.month)
+		
 	#for i in range()
 	
-	
-	
+func MonthLength(month, year) -> int:
+	print(month)
+	if(month == 1 and (year % 4) == 0):
+		return 29
+	if(month == 1):
+		return 28
+	if(month == 3 or month == 5 or month == 8 or month == 10):
+		return 30
+	return 31
 	
 
-func makeIcon(column: int,row: int,day: int) -> void:
+func MakeIcon(column: int,row: int,day: int, thisMonth: true) -> void:
 	
 	var scene: Sprite2D = thisMonth.instantiate()
 	add_child(scene)
