@@ -6,7 +6,7 @@
 font_size = 75
 
 [node name="Today" type="Sprite2D"]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.45, 0.45)
 texture = ExtResource("1_nv6xi")
 
 [node name="Label" type="Label" parent="."]

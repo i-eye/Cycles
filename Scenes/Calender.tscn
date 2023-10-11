@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6q51ygjbvowe"]
+[gd_scene load_steps=7 format=3 uid="uid://b6q51ygjbvowe"]
 
 [ext_resource type="Texture2D" uid="uid://ck2o1tl87myes" path="res://Sprites/app2notext.png" id="1_sb4xc"]
 [ext_resource type="Script" path="res://Scripts/DaySelections.gd" id="2_pp83c"]
 [ext_resource type="PackedScene" uid="uid://cjd06v2h25u7k" path="res://Scenes/DayIcon.tscn" id="3_qgqp5"]
+[ext_resource type="Texture2D" uid="uid://psmaghc2weii" path="res://Sprites/LeftArrow.png" id="4_gotfo"]
+[ext_resource type="Texture2D" uid="uid://bsg0nfiyjsu75" path="res://Sprites/RightArrow.png" id="5_30b8g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x0n64"]
+font_size = 60
+font_color = Color(0.376471, 0.482353, 0.341176, 1)
 
 [node name="Calender" type="Node2D"]
 
@@ -18,10 +24,41 @@ offset_bottom = 1024.0
 texture = ExtResource("1_sb4xc")
 expand_mode = 5
 
-[node name="DaySelections" type="Control" parent="."]
+[node name="DaySelections" type="Control" parent="." node_paths=PackedStringArray("monthLabel")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_pp83c")
-thisMonth = ExtResource("3_qgqp5")
+buttonScene = ExtResource("3_qgqp5")
+monthLabel = NodePath("../MonthLabel")
+
+[node name="LeftArrow" type="Button" parent="."]
+offset_top = 160.0
+offset_right = 208.0
+offset_bottom = 268.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("4_gotfo")
+flat = true
+
+[node name="RightArrow" type="Button" parent="."]
+offset_left = 470.0
+offset_top = 160.0
+offset_right = 678.0
+offset_bottom = 268.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("5_30b8g")
+flat = true
+
+[node name="MonthLabel" type="Label" parent="."]
+offset_left = 130.0
+offset_top = 191.0
+offset_right = 429.0
+offset_bottom = 297.0
+text = "December"
+label_settings = SubResource("LabelSettings_x0n64")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="LeftArrow" to="DaySelections" method="_on_left_arrow_pressed"]
+[connection signal="pressed" from="RightArrow" to="DaySelections" method="_on_right_arrow_pressed"]

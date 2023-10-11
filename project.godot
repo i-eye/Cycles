@@ -25,6 +25,10 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 
+[dotnet]
+
+project/assembly_name="Cycles"
+
 [rendering]
 
 2d/snap/snap_2d_transforms_to_pixel=true

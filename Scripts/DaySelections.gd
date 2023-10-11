@@ -1,54 +1,103 @@
 extends Control
 
-@export var thisMonth: PackedScene
-
+@export var buttonScene: PackedScene
+@export var monthLabel: Label
+var viewYear: int
+var viewMonth: int
 #@export var otherMonth: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var today = Time.get_datetime_dict_from_system(false)
-	var todayColumn = today.weekday - 1
+	var today = Time.get_datetime_dict_from_system()
+	viewMonth = today.month
+	viewYear = today.year
+	#print(viewMonth)
+	CreateIcons(viewMonth,viewYear)
+	#DeleteIcons()
+
+func CreateIcons(month,year):
+	monthLabel.text = getMonth(month)
+	var day = 1
+	var todayColumn = get_weekday(day,month,year) - 1
+	var todayRow: int = 0
 	if(todayColumn == -1):
 		todayColumn = 6
-	var todayRow: int = floor(today.day / 7) + 1
-	MakeIcon(todayColumn,todayRow,today.day)
-	var backNumber = ((todayRow) + (todayColumn) * 7)
-	var frontNumber = (5 - todayRow) + (4 - todayColumn) * 7
-	print(backNumber)
-	print(frontNumber)
+	
+	
+	MakeIcon(todayColumn,todayRow,day, true)
+	#print(todayColumn)
+	#print(todayRow)
+	var backNumber = todayColumn + (todayRow)*7
+	var frontNumber = (6 - todayColumn) + (5-todayRow)*7
+	#print(backNumber)
+	#print(frontNumber)
+	
 	for i in range(backNumber + 1):
-		var dayTemp = today.day - i
-		var monthTemp = today.month
-		var yearTemp = today.month
+		var dayTemp = day - i
+		var monthTemp = month
+		var yearTemp = month
 		if(dayTemp < 1):
-			dayTemp += MonthLength(monthTemp,monthTemp)
+			dayTemp += MonthLength(monthTemp,yearTemp)
 			monthTemp -= 1
 		var column = todayColumn - i
 		var row = todayRow
 		while(column < 0):
 			column += 7
 			row -=1
-		
-		MakeIcon(column,row,dayTemp, monthTemp == today.month)
-		
-	#for i in range()
+		MakeIcon(column,row,dayTemp, monthTemp == month)
 	
+	for i in range(frontNumber + 1):
+		var dayTemp = day + i
+		var monthTemp = month
+		var yearTemp = year
+		if(dayTemp > MonthLength(monthTemp,yearTemp)):
+			dayTemp -= MonthLength(monthTemp,monthTemp)
+			monthTemp += 1
+		var column = todayColumn + i
+		var row = todayRow
+		while(column > 6):
+			column -= 7
+			row += 1
+		MakeIcon(column,row,dayTemp,monthTemp == month)
+	
+	
+func getMonth(number: int) -> String:
+	match number:
+		1: return "January"
+		2: return "February"
+		3: return "March"
+		4: return "April"
+		5: return "May"
+		6: return "June"
+		7: return "July"
+		8: return "August"
+		9: return "September"
+		10: return "October"
+		11: return "November"
+		12: return "December"
+		_: return "wtf"
+		
+func DeleteIcons():
+	var icons = get_children()
+	for icon in icons:
+		icon.queue_free()
+
 func MonthLength(month, year) -> int:
-	print(month)
-	if(month == 1 and (year % 4) == 0):
+	#print(month)
+	if(month == 2 and (year % 4) == 0 and (year % 100) != 0):
 		return 29
-	if(month == 1):
+	if(month == 2):
 		return 28
-	if(month == 3 or month == 5 or month == 8 or month == 10):
+	if(month == 4 or month == 6 or month == 9 or month == 11):
 		return 30
 	return 31
 	
 
-func MakeIcon(column: int,row: int,day: int, thisMonth: true) -> void:
-	
-	var scene: Sprite2D = thisMonth.instantiate()
+func MakeIcon(column: int,row: int,day: int, thisMonth: bool) -> void:
+	var scene: Sprite2D = buttonScene.instantiate() as Sprite2D
 	add_child(scene)
 	scene.global_position = Vector2(40+(column*80),400+(row*70))
 	scene.get_node("Label").text = str(day)
+	if(!thisMonth): scene.set_texture(load("res://Sprites/otherDay.png"))
 
 func get_weekday(d, m, y):
 	# Returns the weekday (int)
@@ -58,3 +107,22 @@ func get_weekday(d, m, y):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
+
+
+func _on_left_arrow_pressed():
+	viewMonth -= 1
+	if(viewMonth == 0):
+		viewMonth = 12
+		viewYear -= 1
+	DeleteIcons()
+	CreateIcons(viewMonth,viewYear)
+	
+
+
+func _on_right_arrow_pressed():
+	viewMonth += 1
+	if(viewMonth > 12):
+		viewMonth = 1
+		viewYear += 1 # Replace with function body.
+	DeleteIcons()
+	CreateIcons(viewMonth,viewYear)
