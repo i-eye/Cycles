@@ -1,0 +1,6 @@
+Row 1 Column 1: 50, 400
+Row 1 Column 2: 120, 400
+Row 1 Column 3: 190, 400
+
+Start at 50, 400
+Add 70 per one
