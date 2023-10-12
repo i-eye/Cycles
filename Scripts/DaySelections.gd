@@ -93,11 +93,11 @@ func MonthLength(month, year) -> int:
 	
 
 func MakeIcon(column: int,row: int,day: int, thisMonth: bool) -> void:
-	var scene: Sprite2D = buttonScene.instantiate() as Sprite2D
+	var scene: Button = buttonScene.instantiate() as Button
 	add_child(scene)
-	scene.global_position = Vector2(40+(column*80),400+(row*70))
+	scene.global_position = Vector2(5+(column*80),360+(row*70))
 	scene.get_node("Label").text = str(day)
-	if(!thisMonth): scene.set_texture(load("res://Sprites/otherDay.png"))
+	if(!thisMonth): scene.icon = (load("res://Sprites/otherDay.png"))
 
 func get_weekday(d, m, y):
 	# Returns the weekday (int)

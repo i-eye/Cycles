@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://csedbbm8v73kt"]
+[gd_scene load_steps=8 format=3 uid="uid://csedbbm8v73kt"]
 
 [ext_resource type="Texture2D" uid="uid://bx0ij31u2nnan" path="res://Sprites/Main Background.jpg" id="1_3kq2n"]
 [ext_resource type="Script" path="res://Scripts/DisplayController.gd" id="2_ar0lv"]
 [ext_resource type="Texture2D" uid="uid://b5tuojfbvwt3n" path="res://Sprites/LogSymptoms.png" id="3_y8f0j"]
 [ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="4_xawvl"]
-[ext_resource type="PackedScene" uid="uid://cudoxii0cxlr" path="res://Scenes/LogSymptoms.tscn" id="5_ujs3d"]
 [ext_resource type="Texture2D" uid="uid://b6l5u57y8qrjx" path="res://Sprites/Calendar.jpg" id="6_euihv"]
-[ext_resource type="PackedScene" uid="uid://b6q51ygjbvowe" path="res://Scenes/Calender.tscn" id="7_yphv1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lk47r"]
 line_spacing = 0.0
@@ -62,7 +60,7 @@ scale = Vector2(0.29, 0.29)
 icon = ExtResource("3_y8f0j")
 flat = true
 script = ExtResource("4_xawvl")
-scene = ExtResource("5_ujs3d")
+scene = "res://Scenes/LogSymptoms.tscn"
 
 [node name="CalendarButton" type="Button" parent="."]
 offset_left = 513.0
@@ -73,7 +71,7 @@ scale = Vector2(0.4, 0.4)
 icon = ExtResource("6_euihv")
 flat = true
 script = ExtResource("4_xawvl")
-scene = ExtResource("7_yphv1")
+scene = "res://Scenes/Calender.tscn"
 
 [connection signal="button_down" from="LogSymptomsButton" to="LogSymptomsButton" method="_on_button_down"]
 [connection signal="button_down" from="CalendarButton" to="CalendarButton" method="_on_button_down"]
