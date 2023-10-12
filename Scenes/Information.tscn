@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drri4twk0alq1"]
+
+[ext_resource type="Script" path="res://Scripts/Information.gd" id="1_hq56k"]
+
+[node name="Information" type="Node" groups=["Persist"]]
+script = ExtResource("1_hq56k")
