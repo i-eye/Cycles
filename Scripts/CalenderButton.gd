@@ -1,5 +1,6 @@
 extends Button
 @export var SymptomScene: PackedScene
+var isThisMonth: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,10 +13,12 @@ func _process(delta):
 
 
 func _on_button_down():
-	var scene = SymptomScene.instantiate()
-	get_tree().current_scene.add_child(scene)
-	scene.deleteOnEnd = true
-	scene.day = int(get_node("Label").text)
-	scene.month = get_parent().get_node("DaySelections").viewMonth
-	scene.month = get_parent().get_node("DaySelections").viewYear
+	if isThisMonth:
+		var scene = SymptomScene.instantiate()
+		get_tree().current_scene.add_child(scene)
+		scene.deleteOnEnd = true
+		scene.day = int(get_node("Label").text)
+		scene.month = get_parent().viewMonth
+		scene.year = get_parent().viewYear
+		scene._ready()
 	

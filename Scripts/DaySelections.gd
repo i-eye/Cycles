@@ -97,7 +97,9 @@ func MakeIcon(column: int,row: int,day: int, thisMonth: bool) -> void:
 	add_child(scene)
 	scene.global_position = Vector2(5+(column*80),360+(row*70))
 	scene.get_node("Label").text = str(day)
-	if(!thisMonth): scene.icon = (load("res://Sprites/otherDay.png"))
+	if(!thisMonth): 
+		scene.icon = (load("res://Sprites/otherDay.png"))
+		scene.isThisMonth = false
 
 func get_weekday(d, m, y):
 	# Returns the weekday (int)
