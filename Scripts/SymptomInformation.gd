@@ -14,7 +14,7 @@ class SymptomsObject extends Object:
 var symptoms: Array[SymptomsObject]
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	print(SMake(PackedStringArray(["gaming","laming"])))
 
 
 func loadInfo():
@@ -31,11 +31,17 @@ func SMake(array: PackedStringArray) -> String:
 	var string: String
 	for element in array:
 		string += (element + ";")
-	string.erase(string.length())
+	string = string.erase(string.length()-1)
 	return string
 
 func hasData(d,m,y) -> bool:
+	for symptom in symptoms:
+		if(symptom.day == d and symptom.month == m and symptom.year == y):
+			return true
 	return false
 
-func getData():
-	pass
+func getData(d,m,y) -> SymptomsObject:
+	for symptom in symptoms:
+		if(symptom.day == d and symptom.month == m and symptom.year == y):
+			return symptom
+	return null

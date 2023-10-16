@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmmdhyuleyi7n"]
+
+[ext_resource type="Texture2D" uid="uid://dtloxvw3iahg8" path="res://Sprites/SymptomButton.png" id="1_srpcp"]
+[ext_resource type="Script" path="res://Scripts/SymptomButton.gd" id="3_q24u1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1qyfs"]
+font_size = 25
+
+[node name="SymptomButton" type="TextureButton"]
+offset_right = 241.0
+offset_bottom = 56.0
+scale = Vector2(1, 0.5)
+texture_normal = ExtResource("1_srpcp")
+script = ExtResource("3_q24u1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -4.0
+offset_right = 253.0
+offset_bottom = 52.0
+scale = Vector2(1, 2)
+text = "No"
+label_settings = SubResource("LabelSettings_1qyfs")
