@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ckfnyfd7bqp5q" path="res://Sprites/LogNoText.png" id="2_titcn"]
 [ext_resource type="Texture2D" uid="uid://cce24wum7oox1" path="res://Sprites/Back.png" id="3_ejmp1"]
 [ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="4_6mht1"]
-[ext_resource type="PackedScene" uid="uid://bmmdhyuleyi7n" path="res://Scenes/symptom_button.tscn" id="5_ghfvf"]
+[ext_resource type="PackedScene" uid="uid://ci3p7vay8um04" path="res://Scenes/symptom_button.tscn" id="5_xo22q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cuyqo"]
 font_size = 40
@@ -49,15 +49,366 @@ vertical_alignment = 1
 [node name="SymptomButtons" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 187.0
+offset_top = 301.0
+offset_right = 227.0
+offset_bottom = 341.0
 
-[node name="SymptomButton" parent="SymptomButtons" instance=ExtResource("5_ghfvf")]
+[node name="Happy" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 399.0
-offset_right = 245.0
-offset_bottom = 455.0
-scale = Vector2(0.5, 0.5)
+offset_left = -183.0
+offset_top = 82.0
+offset_right = 58.0
+offset_bottom = 138.0
+symptomName = "Happy"
+
+[node name="Sad" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -100.0
+offset_top = 82.0
+offset_right = 141.0
+offset_bottom = 138.0
+symptomName = "Sad"
+
+[node name="Calm" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -42.0
+offset_top = 82.0
+offset_right = 199.0
+offset_bottom = 138.0
+symptomName = "Calm"
+
+[node name="Angry" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 82.0
+offset_right = 269.0
+offset_bottom = 138.0
+symptomName = "Angry"
+
+[node name="Anxious" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 82.0
+offset_right = 346.0
+offset_bottom = 138.0
+symptomName = "Anxious"
+
+[node name="Tired" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 82.0
+offset_right = 444.0
+offset_bottom = 138.0
+symptomName = "Tired"
+
+[node name="Energetic" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 82.0
+offset_right = 514.0
+offset_bottom = 138.0
+symptomName = "Energetic"
+
+[node name="Depressed" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -183.0
+offset_top = 112.0
+offset_right = 58.0
+offset_bottom = 168.0
+symptomName = "Depressed"
+
+[node name="Self Critical" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -71.0
+offset_top = 112.0
+offset_right = 170.0
+offset_bottom = 168.0
+symptomName = "Self Critical"
+
+[node name="Apathetic" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 112.0
+offset_right = 287.0
+offset_bottom = 168.0
+symptomName = "Apathetic"
+
+[node name="Frustrated" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 112.0
+offset_right = 389.0
+offset_bottom = 168.0
+symptomName = "Frustrated"
+
+[node name="Mood Swings" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 112.0
+offset_right = 499.0
+offset_bottom = 168.0
+symptomName = "Mood Swings"
+
+[node name="Cramps" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -184.0
+offset_top = 194.0
+offset_right = 57.0
+offset_bottom = 250.0
+symptomType = 1
+symptomName = "Cramps"
+
+[node name="Cravings" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -98.0
+offset_top = 194.0
+offset_right = 143.0
+offset_bottom = 250.0
+symptomType = 1
+symptomName = "Cravings"
+
+[node name="Headache" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 194.0
+offset_right = 238.0
+offset_bottom = 250.0
+symptomType = 1
+symptomName = "Headache"
+
+[node name="Backache" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 194.0
+offset_right = 343.0
+offset_bottom = 250.0
+symptomType = 1
+symptomName = "Backache"
+
+[node name="Acne" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 194.0
+offset_right = 446.0
+offset_bottom = 250.0
+symptomType = 1
+symptomName = "Acne"
+
+[node name="Nausea" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 194.0
+offset_right = 510.0
+offset_bottom = 250.0
+symptomType = 1
+symptomName = "Nausea"
+
+[node name="Bloating" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -183.0
+offset_top = 228.0
+offset_right = 58.0
+offset_bottom = 284.0
+symptomType = 1
+symptomName = "Bloating"
+
+[node name="Constipation" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -92.0
+offset_top = 228.0
+offset_right = 149.0
+offset_bottom = 284.0
+symptomType = 1
+symptomName = "Constipation"
+
+[node name="Insomnia" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 228.0
+offset_right = 278.0
+offset_bottom = 284.0
+symptomType = 1
+symptomName = "Insomnia"
+
+[node name="Tender Breasts" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 228.0
+offset_right = 378.0
+offset_bottom = 284.0
+symptomType = 1
+symptomName = "Tender Breasts"
+
+[node name="Walking" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -183.0
+offset_top = 318.0
+offset_right = 58.0
+offset_bottom = 374.0
+symptomType = 2
+symptomName = "Walking"
+
+[node name="Running" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -93.0
+offset_top = 318.0
+offset_right = 148.0
+offset_bottom = 374.0
+symptomType = 2
+symptomName = "Running"
+
+[node name="Biking" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 318.0
+offset_right = 243.0
+offset_bottom = 374.0
+symptomType = 2
+symptomName = "Biking"
+
+[node name="Weight Lifting" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 318.0
+offset_right = 318.0
+offset_bottom = 374.0
+symptomType = 2
+symptomName = "Weight Lifting"
+
+[node name="Yoga" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 318.0
+offset_right = 458.0
+offset_bottom = 374.0
+symptomType = 2
+symptomName = "Yoga"
+
+[node name="Swimming" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -183.0
+offset_top = 349.0
+offset_right = 58.0
+offset_bottom = 405.0
+symptomType = 2
+symptomName = "Swimming"
+
+[node name="Team Sports" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -74.0
+offset_top = 349.0
+offset_right = 167.0
+offset_bottom = 405.0
+symptomType = 2
+symptomName = "Team Sports"
+
+[node name="Other" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 349.0
+offset_right = 295.0
+offset_bottom = 405.0
+symptomType = 2
+symptomName = "Other Exercise"
+
+[node name="Supplements" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -181.0
+offset_top = 418.0
+offset_right = 60.0
+offset_bottom = 474.0
+symptomType = 3
+symptomName = "Supplements"
+
+[node name="Birth Control" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -44.0
+offset_top = 418.0
+offset_right = 197.0
+offset_bottom = 474.0
+symptomType = 3
+symptomName = "Birth Control"
+
+[node name="Other(Medication)" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 418.0
+offset_right = 332.0
+offset_bottom = 474.0
+symptomType = 3
+symptomName = "Other"
+
+[node name="Stress" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -182.0
+offset_top = 512.0
+offset_right = 59.0
+offset_bottom = 568.0
+symptomType = 4
+symptomName = "Stress"
+
+[node name="Travel" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -105.0
+offset_top = 512.0
+offset_right = 136.0
+offset_bottom = 568.0
+symptomType = 4
+symptomName = "Travel"
+
+[node name="Meditation" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -28.0
+offset_top = 512.0
+offset_right = 213.0
+offset_bottom = 568.0
+symptomType = 4
+symptomName = "Meditation"
+
+[node name="Therapy" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 512.0
+offset_right = 332.0
+offset_bottom = 568.0
+symptomType = 4
+symptomName = "Therapy"
+
+[node name="Journaling" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 512.0
+offset_right = 427.0
+offset_bottom = 568.0
+symptomType = 4
+symptomName = "Journaling"
+
+[node name="Sickness" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -182.0
+offset_top = 545.0
+offset_right = 59.0
+offset_bottom = 601.0
+symptomType = 4
+symptomName = "Sickness"
+
+[node name="Injury" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -86.0
+offset_top = 545.0
+offset_right = 155.0
+offset_bottom = 601.0
+symptomType = 4
+symptomName = "Injury"
+
+[node name="Alcohol" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 545.0
+offset_right = 229.0
+offset_bottom = 601.0
+symptomType = 4
+symptomName = "Alcohol"
 
 [connection signal="button_down" from="TextureRect/Button" to="." method="_on_back_button_down"]

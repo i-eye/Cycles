@@ -45,3 +45,6 @@ func getData(d,m,y) -> SymptomsObject:
 		if(symptom.day == d and symptom.month == m and symptom.year == y):
 			return symptom
 	return null
+	
+func appendData(data: SymptomsObject):
+	symptoms.append(data)
