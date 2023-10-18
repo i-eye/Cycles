@@ -19,6 +19,7 @@ func toggle():
 	toggleBool(!toggly)
 	
 func toggleBool(state: bool):
+	#toggling
 	if(state):
 		texture_normal = load("res://Sprites/SymptomButtonToggled.png")
 		toggly = true

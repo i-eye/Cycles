@@ -14,7 +14,8 @@ class SymptomsObject extends Object:
 var symptoms: Array[SymptomsObject]
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(SMake(PackedStringArray(["gaming","laming"])))
+	#print(SMake(PackedStringArray(["gaming","laming"])))
+	pass
 
 
 func loadInfo():
@@ -28,6 +29,8 @@ func saveInfo():
 		save_game.store_csv_line(strings)
 	
 func SMake(array: PackedStringArray) -> String:
+	if(array.is_empty()):
+		return ""
 	var string: String
 	for element in array:
 		string += (element + ";")
@@ -39,6 +42,13 @@ func hasData(d,m,y) -> bool:
 		if(symptom.day == d and symptom.month == m and symptom.year == y):
 			return true
 	return false
+	
+func hasSubstance(d,m,y) -> bool:
+	for symptom in symptoms:
+		if(symptom.day == d and symptom.month == m and symptom.year == y):
+			if(!symptom.mood.is_empty() or !symptom.exercise.is_empty() or !symptom.medication.is_empty() or !symptom.other.is_empty() or !symptom.physical.is_empty() or !symptom.comments.is_empty()):
+				return true
+	return false
 
 func getData(d,m,y) -> SymptomsObject:
 	for symptom in symptoms:
@@ -47,4 +57,12 @@ func getData(d,m,y) -> SymptomsObject:
 	return null
 	
 func appendData(data: SymptomsObject):
-	symptoms.append(data)
+	symptoms.sort()
+	#print(str(hasData(data.day,data.month,data.year)))
+	if(hasData(data.day,data.month,data.year)):
+		for i in range(symptoms.size()):
+			if(symptoms[i].day == data.day and symptoms[i].month == data.month and symptoms[i].year == data.year):
+				print(i)
+				symptoms[i] = data
+	else:
+		symptoms.append(data)

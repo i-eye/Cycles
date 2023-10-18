@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://csedbbm8v73kt"]
 
 [ext_resource type="Texture2D" uid="uid://bx0ij31u2nnan" path="res://Sprites/Main Background.jpg" id="1_3kq2n"]
-[ext_resource type="Script" path="res://Scripts/DisplayController.gd" id="2_ar0lv"]
+[ext_resource type="Script" path="res://Scripts/MainController.gd" id="2_f0d3i"]
 [ext_resource type="Texture2D" uid="uid://b5tuojfbvwt3n" path="res://Sprites/LogSymptoms.png" id="3_y8f0j"]
 [ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="4_xawvl"]
 [ext_resource type="Texture2D" uid="uid://b6l5u57y8qrjx" path="res://Sprites/Calendar.jpg" id="6_euihv"]
@@ -31,7 +31,7 @@ texture = ExtResource("1_3kq2n")
 expand_mode = 5
 
 [node name="DayDisplay" type="Node2D" parent="TextureBackground"]
-script = ExtResource("2_ar0lv")
+script = ExtResource("2_f0d3i")
 
 [node name="DayNumber" type="Label" parent="TextureBackground/DayDisplay"]
 offset_left = 152.0

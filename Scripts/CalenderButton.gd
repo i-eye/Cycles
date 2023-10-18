@@ -20,5 +20,5 @@ func _on_button_down():
 		scene.day = int(get_node("Label").text)
 		scene.month = get_parent().viewMonth
 		scene.year = get_parent().viewYear
-		scene._ready()
+		scene.readyTwo()
 	

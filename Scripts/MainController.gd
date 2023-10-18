@@ -4,7 +4,7 @@ extends Node2D
 @onready var affix: Label = $DayAffix
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	get_node("/root/SymptomInformation").saveInfo()
 	var time = Time.get_date_dict_from_system(false);
 	var day = time.day
 	var affixText;

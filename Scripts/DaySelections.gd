@@ -2,6 +2,7 @@ extends Control
 
 @export var buttonScene: PackedScene
 @export var monthLabel: Label
+@export var yearLabel: Label
 var viewYear: int
 var viewMonth: int
 #@export var otherMonth: PackedScene
@@ -16,6 +17,7 @@ func _ready():
 
 func CreateIcons(month,year):
 	monthLabel.text = getMonth(month)
+	yearLabel.text = str(year)
 	var day = 1
 	var todayColumn = get_weekday(day,month,year) - 1
 	var todayRow: int = 0
@@ -34,9 +36,9 @@ func CreateIcons(month,year):
 	for i in range(backNumber + 1):
 		var dayTemp = day - i
 		var monthTemp = month
-		var yearTemp = month
+		var yearTemp = year
 		if(dayTemp < 1):
-			dayTemp += MonthLength(monthTemp,yearTemp)
+			dayTemp += MonthLength(monthTemp-1,yearTemp)
 			monthTemp -= 1
 		var column = todayColumn - i
 		var row = todayRow
