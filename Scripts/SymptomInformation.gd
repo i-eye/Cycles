@@ -20,23 +20,24 @@ func _ready():
 
 
 func loadInfo():
-	var saved_game = FileAccess.open("user://savegame.save", FileAccess.READ)
-	while(true):
-		var objects = saved_game.get_csv_line(",")
-		print(objects)
-		if(objects.size() > 2):
-			var object = SymptomsObject.new()
-			object.day = int(objects[0])
-			object.month = int(objects[1])
-			object.year = int(objects[2])
-			object.mood = objects[3].split(";")
-			object.physical = objects[4].split(";")
-			object.exercise = objects[5].split(";")
-			object.medication = objects[6].split(";")
-			object.other = objects[7].split(";")
-			symptoms.append(object)
-		else:
-			break
+	if(FileAccess.file_exists("user://savegame.save")):
+		var saved_game = FileAccess.open("user://savegame.save", FileAccess.READ)
+		while(true):
+			var objects = saved_game.get_csv_line(",")
+			print(objects)
+			if(objects.size() > 2):
+				var object = SymptomsObject.new()
+				object.day = int(objects[0])
+				object.month = int(objects[1])
+				object.year = int(objects[2])
+				object.mood = objects[3].split(";")
+				object.physical = objects[4].split(";")
+				object.exercise = objects[5].split(";")
+				object.medication = objects[6].split(";")
+				object.other = objects[7].split(";")
+				symptoms.append(object)
+			else:
+				break
 
 func saveInfo():
 	var save_game = FileAccess.open("user://savegame.save", FileAccess.WRITE)
@@ -45,7 +46,11 @@ func saveInfo():
 		var array: Array[String] = [str(object.day),str(object.month),str(object.year),SMake(object.mood),SMake(object.physical),SMake(object.exercise),SMake(object.medication),SMake(object.other),object.comments]
 		var strings = PackedStringArray(array)
 		save_game.store_csv_line(strings)
-	
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		saveInfo()
+
 func SMake(array: PackedStringArray) -> String:
 	if(array.is_empty()):
 		return ""

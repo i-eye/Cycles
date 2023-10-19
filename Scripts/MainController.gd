@@ -1,10 +1,10 @@
 extends Node2D
 
-@onready var number: Label = $DayNumber
-@onready var affix: Label = $DayAffix
+@onready var number: Label = $TextureBackground/DayDisplay/DayNumber
+@onready var affix: Label = $TextureBackground/DayDisplay/DayAffix
+@export var symptomScene: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("/root/SymptomInformation").saveInfo()
 	var time = Time.get_date_dict_from_system(false);
 	var day = time.day
 	var affixText;
@@ -16,6 +16,19 @@ func _ready():
 	affix.text = affixText
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func _on_log_symptoms_button_button_down():
+	var scene = symptomScene.instantiate()
+	get_tree().current_scene.add_child(scene)
+	scene.deleteOnEnd = true
+	scene.readyTwo()
+	
+func calculateNextPeriod() -> String:
+	var time = Time.get_date_dict_from_system(false);
+	var info = $"/root/SymptomInformation"
+	var periodTime = 25
+	var day = time.day
+	var month = time.month
+	var year = time.year
+	for i in range(25):
+		print("die")
+	return "cry"

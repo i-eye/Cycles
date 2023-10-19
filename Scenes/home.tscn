@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://csedbbm8v73kt"]
+[gd_scene load_steps=9 format=3 uid="uid://csedbbm8v73kt"]
 
 [ext_resource type="Texture2D" uid="uid://bx0ij31u2nnan" path="res://Sprites/Main Background.jpg" id="1_3kq2n"]
+[ext_resource type="PackedScene" uid="uid://cudoxii0cxlr" path="res://Scenes/LogSymptoms.tscn" id="2_3iuye"]
 [ext_resource type="Script" path="res://Scripts/MainController.gd" id="2_f0d3i"]
 [ext_resource type="Texture2D" uid="uid://b5tuojfbvwt3n" path="res://Sprites/LogSymptoms.png" id="3_y8f0j"]
 [ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="4_xawvl"]
@@ -18,6 +19,8 @@ outline_size = 10
 outline_color = Color(0.376471, 0.482353, 0.341176, 1)
 
 [node name="Home" type="Node2D"]
+script = ExtResource("2_f0d3i")
+symptomScene = ExtResource("2_3iuye")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 576.0
@@ -31,7 +34,6 @@ texture = ExtResource("1_3kq2n")
 expand_mode = 5
 
 [node name="DayDisplay" type="Node2D" parent="TextureBackground"]
-script = ExtResource("2_f0d3i")
 
 [node name="DayNumber" type="Label" parent="TextureBackground/DayDisplay"]
 offset_left = 152.0
@@ -59,8 +61,6 @@ offset_bottom = 376.0
 scale = Vector2(0.29, 0.29)
 icon = ExtResource("3_y8f0j")
 flat = true
-script = ExtResource("4_xawvl")
-scene = "res://Scenes/LogSymptoms.tscn"
 
 [node name="CalendarButton" type="Button" parent="."]
 offset_left = 513.0
@@ -73,5 +73,5 @@ flat = true
 script = ExtResource("4_xawvl")
 scene = "res://Scenes/Calender.tscn"
 
-[connection signal="button_down" from="LogSymptomsButton" to="LogSymptomsButton" method="_on_button_down"]
+[connection signal="button_down" from="LogSymptomsButton" to="." method="_on_log_symptoms_button_button_down"]
 [connection signal="button_down" from="CalendarButton" to="CalendarButton" method="_on_button_down"]

@@ -7,24 +7,24 @@ var month = Time.get_datetime_dict_from_system().month
 var year = Time.get_datetime_dict_from_system().year
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#print("ready")
 	info = get_node("/root/SymptomInformation") as SymptomInformation
-	var dateString = str(year) + "-" + str(month) + "-" + str(day) 
-	$Date.text = dateString
+	
 	
 	
 func readyTwo():
+	#print("ready2")
 	var dateString = str(year) + "-" + str(month) + "-" + str(day) 
 	$Date.text = dateString
 	#print(info.hasData(day,month,year))
-	
 	if(info.hasData(day,month,year)):
 		fillData(info.getData(day,month,year))
 
 func fillData(information: SymptomInformation.SymptomsObject):
-	#print(information.mood)
-	
+	print(str(information.day))
 	var buttons = $SymptomButtons.get_children()
 	for button in buttons:
+		button.toggleBool(false)
 		var string = button.symptomName
 		#print(string)
 		match button.symptomType:
@@ -44,6 +44,7 @@ func _on_back_button_down():
 	if(deleteOnEnd):
 		queue_free()
 	else:
+		queue_free()
 		get_tree().change_scene_to_file("res://Scenes/home.tscn")
 
 func logSymptoms():

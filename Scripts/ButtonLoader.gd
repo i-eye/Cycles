@@ -1,8 +1,8 @@
 extends Button
 
 @export var scene: String
-@export var goHome: bool
-@onready var currentScene = get_tree().current_scene
+#@export var goHome: bool
+#@onready var currentScene = get_tree().current_scene
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 	#print(currentScene)
@@ -14,3 +14,4 @@ extends Button
 
 func _on_button_down():
 	get_tree().change_scene_to_file(scene)
+	
