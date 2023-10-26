@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cudoxii0cxlr"]
 
 [ext_resource type="Script" path="res://Scripts/Logger.gd" id="1_hk3xy"]
-[ext_resource type="Texture2D" uid="uid://ckfnyfd7bqp5q" path="res://Sprites/LogNoText.png" id="2_titcn"]
-[ext_resource type="Texture2D" uid="uid://cce24wum7oox1" path="res://Sprites/Back.png" id="3_ejmp1"]
-[ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="4_6mht1"]
+[ext_resource type="Texture2D" uid="uid://cce24wum7oox1" path="res://Sprites/Navigation Buttons/Back.png" id="2_e4wil"]
+[ext_resource type="Texture2D" uid="uid://cyod6osi0ektm" path="res://Sprites/Background/Log2NoText.png" id="3_g0h7u"]
+[ext_resource type="Texture2D" uid="uid://btykff0rvfr6" path="res://Sprites/SymptomLogButton.png" id="5_iebpi"]
 [ext_resource type="PackedScene" uid="uid://ci3p7vay8um04" path="res://Scenes/symptom_button.tscn" id="5_xo22q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cuyqo"]
@@ -18,23 +18,20 @@ offset_right = 576.0
 offset_bottom = 1024.0
 color = Color(0.878431, 0.937255, 0.768627, 1)
 
+[node name="BackButton" type="Button" parent="."]
+offset_top = 130.0
+offset_right = 258.0
+offset_bottom = 388.0
+scale = Vector2(0.3, 0.3)
+icon = ExtResource("2_e4wil")
+flat = true
+
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_top = 210.0
 offset_right = 576.1
 offset_bottom = 1033.0
-texture = ExtResource("2_titcn")
+texture = ExtResource("3_g0h7u")
 expand_mode = 3
-
-[node name="Button" type="Button" parent="TextureRect"]
-layout_mode = 0
-offset_top = -80.0
-offset_right = 258.0
-offset_bottom = 178.0
-scale = Vector2(0.3, 0.3)
-icon = ExtResource("3_ejmp1")
-flat = true
-script = ExtResource("4_6mht1")
-scene = "res://Scenes/home.tscn"
 
 [node name="Date" type="Label" parent="."]
 offset_left = 187.0
@@ -411,4 +408,40 @@ offset_bottom = 601.0
 symptomType = 4
 symptomName = "Alcohol"
 
-[connection signal="button_down" from="TextureRect/Button" to="." method="_on_back_button_down"]
+[node name="Light Flow" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -182.0
+offset_top = 257.0
+offset_right = 59.0
+offset_bottom = 313.0
+symptomType = 1
+symptomName = "Light Flow"
+
+[node name="Medium Flow" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = -68.0
+offset_top = 257.0
+offset_right = 173.0
+offset_bottom = 313.0
+symptomType = 1
+symptomName = "Medium Flow"
+
+[node name="Heavy Flow" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 257.0
+offset_right = 314.0
+offset_bottom = 313.0
+symptomType = 1
+symptomName = "Heavy Flow"
+
+[node name="LogButton" type="TextureButton" parent="."]
+offset_left = 464.0
+offset_top = 848.0
+offset_right = 703.0
+offset_bottom = 1088.0
+scale = Vector2(0.43, 0.43)
+texture_normal = ExtResource("5_iebpi")
+
+[connection signal="button_down" from="BackButton" to="." method="_on_back_button_down"]
+[connection signal="button_down" from="LogButton" to="." method="_on_log_button_button_down"]

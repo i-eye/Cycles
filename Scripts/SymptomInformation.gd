@@ -10,6 +10,7 @@ class SymptomsObject extends Object:
 	var medication: PackedStringArray
 	var other: PackedStringArray
 	var comments: String
+	var isPeriod: bool
 
 var symptoms: Array[SymptomsObject]
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +36,8 @@ func loadInfo():
 				object.exercise = objects[5].split(";")
 				object.medication = objects[6].split(";")
 				object.other = objects[7].split(";")
+				print(objects[9])
+				object.isPeriod = (int(objects[9]) == 1)
 				symptoms.append(object)
 			else:
 				break
@@ -43,9 +46,16 @@ func saveInfo():
 	var save_game = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	for object in symptoms:
 		#print(object.mood)
-		var array: Array[String] = [str(object.day),str(object.month),str(object.year),SMake(object.mood),SMake(object.physical),SMake(object.exercise),SMake(object.medication),SMake(object.other),object.comments]
-		var strings = PackedStringArray(array)
-		save_game.store_csv_line(strings)
+		var num
+		if(object.isPeriod):
+			num = 1
+		else:
+			num = 0
+		print(num)
+		if(hasSubstance(object.day,object.month,object.year)):
+			var array: Array[String] = [str(object.day),str(object.month),str(object.year),SMake(object.mood),SMake(object.physical),SMake(object.exercise),SMake(object.medication),SMake(object.other),object.comments, str(num)]
+			var strings = PackedStringArray(array)
+			save_game.store_csv_line(strings)
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_WM_GO_BACK_REQUEST:
@@ -69,8 +79,19 @@ func hasData(d,m,y) -> bool:
 func hasSubstance(d,m,y) -> bool:
 	for symptom in symptoms:
 		if(symptom.day == d and symptom.month == m and symptom.year == y):
-			if(!symptom.mood.is_empty() or !symptom.exercise.is_empty() or !symptom.medication.is_empty() or !symptom.other.is_empty() or !symptom.physical.is_empty() or !symptom.comments.is_empty()):
+			if( (!symptom.mood.is_empty() and !symptom.mood[0].is_empty()) or
+				(!symptom.physical.is_empty() and !symptom.physical[0].is_empty()) or
+				(!symptom.exercise.is_empty() and !symptom.exercise[0].is_empty()) or
+				(!symptom.medication.is_empty() and !symptom.medication[0].is_empty()) or
+				(!symptom.other.is_empty() and !symptom.other[0].is_empty()) or 
+				symptom.isPeriod):
+				print(symptom.mood)
 				return true
+	return false
+func isPeriod(d,m,y) -> bool:
+	for symptom in symptoms:
+		if(symptom.day == d and symptom.month == m and symptom.year == y):
+			return symptom.isPeriod
 	return false
 
 func getData(d,m,y) -> SymptomsObject:

@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://csedbbm8v73kt"]
 
-[ext_resource type="Texture2D" uid="uid://bx0ij31u2nnan" path="res://Sprites/Main Background.jpg" id="1_3kq2n"]
 [ext_resource type="PackedScene" uid="uid://cudoxii0cxlr" path="res://Scenes/LogSymptoms.tscn" id="2_3iuye"]
 [ext_resource type="Script" path="res://Scripts/MainController.gd" id="2_f0d3i"]
-[ext_resource type="Texture2D" uid="uid://b5tuojfbvwt3n" path="res://Sprites/LogSymptoms.png" id="3_y8f0j"]
+[ext_resource type="Texture2D" uid="uid://bx0ij31u2nnan" path="res://Sprites/Background/MainBackground.jpg" id="3_foqcg"]
+[ext_resource type="Texture2D" uid="uid://b5tuojfbvwt3n" path="res://Sprites/Navigation Buttons/LogSymptoms.png" id="4_of6ru"]
 [ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="4_xawvl"]
-[ext_resource type="Texture2D" uid="uid://b6l5u57y8qrjx" path="res://Sprites/Calendar.jpg" id="6_euihv"]
+[ext_resource type="Texture2D" uid="uid://b6l5u57y8qrjx" path="res://Sprites/Navigation Buttons/Calendar.jpg" id="5_ymo6l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lk47r"]
 line_spacing = 0.0
@@ -30,7 +30,7 @@ color = Color(0.878431, 0.937255, 0.768627, 1)
 [node name="TextureBackground" type="TextureRect" parent="."]
 offset_right = 576.0
 offset_bottom = 823.0
-texture = ExtResource("1_3kq2n")
+texture = ExtResource("3_foqcg")
 expand_mode = 5
 
 [node name="DayDisplay" type="Node2D" parent="TextureBackground"]
@@ -59,7 +59,7 @@ offset_top = 113.0
 offset_right = 769.0
 offset_bottom = 376.0
 scale = Vector2(0.29, 0.29)
-icon = ExtResource("3_y8f0j")
+icon = ExtResource("4_of6ru")
 flat = true
 
 [node name="CalendarButton" type="Button" parent="."]
@@ -68,7 +68,7 @@ offset_top = 1.0
 offset_right = 671.0
 offset_bottom = 159.0
 scale = Vector2(0.4, 0.4)
-icon = ExtResource("6_euihv")
+icon = ExtResource("5_ymo6l")
 flat = true
 script = ExtResource("4_xawvl")
 scene = "res://Scenes/Calender.tscn"

@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6q51ygjbvowe"]
+[gd_scene load_steps=12 format=3 uid="uid://b6q51ygjbvowe"]
 
-[ext_resource type="Texture2D" uid="uid://ck2o1tl87myes" path="res://Sprites/app2notext.png" id="1_sb4xc"]
 [ext_resource type="Script" path="res://Scripts/DaySelections.gd" id="2_pp83c"]
 [ext_resource type="PackedScene" uid="uid://cjd06v2h25u7k" path="res://Scenes/DayIcon.tscn" id="3_qgqp5"]
-[ext_resource type="Texture2D" uid="uid://psmaghc2weii" path="res://Sprites/LeftArrow.png" id="4_gotfo"]
-[ext_resource type="Texture2D" uid="uid://bsg0nfiyjsu75" path="res://Sprites/RightArrow.png" id="5_30b8g"]
-[ext_resource type="Texture2D" uid="uid://cce24wum7oox1" path="res://Sprites/Back.png" id="6_bmae0"]
+[ext_resource type="Texture2D" uid="uid://ck2o1tl87myes" path="res://Sprites/Background/CalenderBackground.png" id="3_ya6bt"]
+[ext_resource type="Texture2D" uid="uid://psmaghc2weii" path="res://Sprites/Navigation Buttons/LeftArrow.png" id="4_m8kv7"]
+[ext_resource type="Texture2D" uid="uid://bsg0nfiyjsu75" path="res://Sprites/Navigation Buttons/RightArrow.png" id="5_jvvtl"]
+[ext_resource type="Texture2D" uid="uid://cce24wum7oox1" path="res://Sprites/Navigation Buttons/Back.png" id="6_34sei"]
 [ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="7_dpnqj"]
+[ext_resource type="Texture2D" uid="uid://f1vghf2x8wea" path="res://Sprites/Navigation Buttons/LogToggle.png" id="8_ywpfl"]
+[ext_resource type="Texture2D" uid="uid://ciq4qr3g42dwa" path="res://Sprites/otherDay.png" id="9_wo8g7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x0n64"]
 font_size = 60
@@ -17,6 +19,8 @@ font_size = 60
 font_color = Color(0.376471, 0.482353, 0.341176, 1)
 
 [node name="Calender" type="Node2D"]
+script = ExtResource("2_pp83c")
+buttonScene = ExtResource("3_qgqp5")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 576.0
@@ -27,25 +31,21 @@ color = Color(0.878431, 0.937255, 0.768627, 1)
 offset_top = 201.0
 offset_right = 576.0
 offset_bottom = 1024.0
-texture = ExtResource("1_sb4xc")
+texture = ExtResource("3_ya6bt")
 expand_mode = 5
 
-[node name="DaySelections" type="Control" parent="." node_paths=PackedStringArray("monthLabel", "yearLabel")]
+[node name="DaySelections" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("2_pp83c")
-buttonScene = ExtResource("3_qgqp5")
-monthLabel = NodePath("../MonthLabel")
-yearLabel = NodePath("../YearLabel")
 
 [node name="LeftArrow" type="Button" parent="."]
 offset_top = 160.0
 offset_right = 208.0
 offset_bottom = 268.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("4_gotfo")
+icon = ExtResource("4_m8kv7")
 flat = true
 
 [node name="RightArrow" type="Button" parent="."]
@@ -54,7 +54,7 @@ offset_top = 160.0
 offset_right = 678.0
 offset_bottom = 268.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("5_30b8g")
+icon = ExtResource("5_jvvtl")
 flat = true
 
 [node name="MonthLabel" type="Label" parent="."]
@@ -72,7 +72,7 @@ offset_left = 130.0
 offset_top = 137.0
 offset_right = 429.0
 offset_bottom = 243.0
-text = "December"
+text = "2023"
 label_settings = SubResource("LabelSettings_v1ind")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -83,11 +83,22 @@ offset_top = 66.0
 offset_right = 264.0
 offset_bottom = 324.0
 scale = Vector2(0.3, 0.3)
-icon = ExtResource("6_bmae0")
+icon = ExtResource("6_34sei")
 flat = true
 script = ExtResource("7_dpnqj")
 scene = "res://Scenes/home.tscn"
 
-[connection signal="pressed" from="LeftArrow" to="DaySelections" method="_on_left_arrow_pressed"]
-[connection signal="pressed" from="RightArrow" to="DaySelections" method="_on_right_arrow_pressed"]
+[node name="ModeToggle" type="TextureButton" parent="."]
+offset_left = 174.0
+offset_top = 918.0
+offset_right = 734.0
+offset_bottom = 1105.0
+scale = Vector2(0.43, 0.43)
+toggle_mode = true
+texture_normal = ExtResource("8_ywpfl")
+texture_pressed = ExtResource("9_wo8g7")
+
+[connection signal="pressed" from="LeftArrow" to="." method="_on_left_arrow_pressed"]
+[connection signal="pressed" from="RightArrow" to="." method="_on_right_arrow_pressed"]
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
+[connection signal="toggled" from="ModeToggle" to="." method="_on_mode_toggle_toggled"]

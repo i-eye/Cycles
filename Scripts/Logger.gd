@@ -5,6 +5,7 @@ var deleteOnEnd: bool = false;
 var day = Time.get_datetime_dict_from_system().day
 var month = Time.get_datetime_dict_from_system().month
 var year = Time.get_datetime_dict_from_system().year
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#print("ready")
@@ -40,12 +41,13 @@ func _process(delta):
 
 
 func _on_back_button_down():
-	logSymptoms()
-	if(deleteOnEnd):
-		queue_free()
-	else:
-		queue_free()
-		get_tree().change_scene_to_file("res://Scenes/home.tscn")
+	var parent = get_parent()
+	if(parent and parent.name == "Calender"):
+		parent.DeleteIcons()
+		parent.CreateIcons(parent.viewMonth,parent.viewYear)
+	
+	queue_free()
+		#get_tree().change_scene_to_file("res://Scenes/home.tscn")
 
 func logSymptoms():
 	var object: SymptomInformation.SymptomsObject
@@ -86,3 +88,14 @@ func logSymptoms():
 					object.other.sort()
 					if(object.other.has(string)): object.other.remove_at(object.other.bsearch(string))
 	info.appendData(object)
+
+
+func _on_log_button_button_down():
+	#print("backButton")
+	logSymptoms()
+	var parent = get_parent()
+	if(parent and parent.name == "Calender"):
+		parent.DeleteIcons()
+		parent.CreateIcons(parent.viewMonth,parent.viewYear)
+	
+	queue_free()

@@ -32,8 +32,5 @@ func toggleBool(state: bool):
 func _on_label_item_rect_changed():
 	changeSize()
 
-
-
-
 func _on_button_down():
 	toggle()

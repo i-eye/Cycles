@@ -1,8 +1,8 @@
-extends Control
+extends Node2D
 
 @export var buttonScene: PackedScene
-@export var monthLabel: Label
-@export var yearLabel: Label
+@onready var monthLabel: Label = $MonthLabel
+@onready var yearLabel: Label = $YearLabel
 var viewYear: int
 var viewMonth: int
 #@export var otherMonth: PackedScene
@@ -79,7 +79,7 @@ func getMonth(number: int) -> String:
 		_: return "wtf"
 		
 func DeleteIcons():
-	var icons = get_children()
+	var icons = $DaySelections.get_children()
 	for icon in icons:
 		icon.queue_free()
 
@@ -95,13 +95,18 @@ func MonthLength(month, year) -> int:
 	
 
 func MakeIcon(column: int,row: int,day: int, thisMonth: bool) -> void:
-	var scene: Button = buttonScene.instantiate() as Button
-	add_child(scene)
+	var scene: TextureButton = buttonScene.instantiate() as TextureButton
+	$DaySelections.add_child(scene)
 	scene.global_position = Vector2(5+(column*80),360+(row*70))
 	scene.get_node("Label").text = str(day)
 	if(!thisMonth): 
-		scene.icon = (load("res://Sprites/otherDay.png"))
+		scene.texture_normal = (load("res://Sprites/otherDay.png"))
 		scene.isThisMonth = false
+	elif(SymptomInformation.hasSubstance(day,viewMonth,viewYear)):
+		scene.texture_normal = (load("res://Sprites/SymptomDay.png"))
+	if(thisMonth and SymptomInformation.isPeriod(day,viewMonth,viewYear)):
+		scene.setTint(true)
+	
 
 func get_weekday(d, m, y):
 	# Returns the weekday (int)
@@ -130,3 +135,9 @@ func _on_right_arrow_pressed():
 		viewYear += 1 # Replace with function body.
 	DeleteIcons()
 	CreateIcons(viewMonth,viewYear)
+
+
+func _on_mode_toggle_toggled(button_pressed):
+	var buttons = $DaySelections.get_children()
+	for button in buttons:
+		button.symptom = button_pressed
