@@ -24,11 +24,67 @@ func _on_log_symptoms_button_button_down():
 	
 func calculateNextPeriod() -> String:
 	var time = Time.get_date_dict_from_system(false);
-	var info = $"/root/SymptomInformation"
-	var periodTime = 25
-	var day = time.day
-	var month = time.month
-	var year = time.year
-	for i in range(25):
-		print("die")
-	return "cry"
+	var periodLength = 28
+	var bleedTime = 6
+	var d = time.day
+	var m = time.month
+	var y = time.year
+	
+	
+	if(SymptomInformation.isPeriod(d,m,y)):
+		var isPeriod: bool = true
+		var calcDay: int = d
+		var calcMonth: int = m
+		var calcYear: int = y
+		var day: int = 0
+		while(isPeriod):
+			calcDay -= 1
+			if(calcDay == 0):
+				calcMonth -=1
+				if(calcMonth == 0):
+					calcYear -=1
+				calcDay = DaySelections.MonthLength(calcMonth,calcYear)
+			day += 1
+			if(!SymptomInformation.isPeriod(calcDay,calcMonth,calcYear)):
+				isPeriod = false
+		var timeLeft = bleedTime - day
+		if(timeLeft == 0 or timeLeft == 1):
+			return "Last Day!"
+		elif(timeLeft == -1 or timeLeft == -2):
+			return "Lasting long\n"+str(-1 * timeLeft)+" days over"
+		elif(timeLeft <= -3):
+			return str(-1 * timeLeft) +" days over\n seek medical attention"
+		else:
+			return str(timeLeft) + " days left"
+	else:
+		var isPeriod: bool = false
+		var calcDay: int = d
+		var calcMonth: int = m
+		var calcYear: int = y
+		var day: int = 0
+		var count: int = 0
+		var noData: bool = false
+		while(!isPeriod):
+			calcDay -= 1
+			if(calcDay == 0):
+				calcMonth -=1
+				if(calcMonth == 0):
+					calcYear -=1
+				calcDay = DaySelections.MonthLength(calcMonth,calcYear)
+			day += 1
+			count += 1
+			if(SymptomInformation.isPeriod(calcDay,calcMonth,calcYear)):
+				isPeriod = true
+			if(count > 31):
+				noData = true
+				break;
+		var nextPeriod: int = periodLength - day
+		if(noData):
+			return "No Data \n Log Something!"
+		if(nextPeriod > 0):
+			return "In "+str(nextPeriod)+" days"
+		elif(nextPeriod == 0):
+			return "Period today :("
+		else:
+			return "Period should've occured"
+	return "Error"

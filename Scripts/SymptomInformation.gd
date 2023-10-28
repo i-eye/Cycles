@@ -52,7 +52,8 @@ func saveInfo():
 		else:
 			num = 0
 		print(num)
-		if(hasSubstance(object.day,object.month,object.year)):
+		if(hasSubstance(object.day,object.month,object.year) or 
+		   isPeriod(object.day,object.month,object.year)):
 			var array: Array[String] = [str(object.day),str(object.month),str(object.year),SMake(object.mood),SMake(object.physical),SMake(object.exercise),SMake(object.medication),SMake(object.other),object.comments, str(num)]
 			var strings = PackedStringArray(array)
 			save_game.store_csv_line(strings)
@@ -83,8 +84,7 @@ func hasSubstance(d,m,y) -> bool:
 				(!symptom.physical.is_empty() and !symptom.physical[0].is_empty()) or
 				(!symptom.exercise.is_empty() and !symptom.exercise[0].is_empty()) or
 				(!symptom.medication.is_empty() and !symptom.medication[0].is_empty()) or
-				(!symptom.other.is_empty() and !symptom.other[0].is_empty()) or 
-				symptom.isPeriod):
+				(!symptom.other.is_empty() and !symptom.other[0].is_empty()) ):
 				print(symptom.mood)
 				return true
 	return false

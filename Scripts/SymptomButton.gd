@@ -7,6 +7,7 @@ var toggly: bool
 func _ready():
 	$Label.text = symptomName
 	
+	
 
 func changeSize():
 	#print("Changing Size")

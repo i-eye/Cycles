@@ -1,5 +1,6 @@
 extends Node2D
 
+class_name DaySelections
 @export var buttonScene: PackedScene
 @onready var monthLabel: Label = $MonthLabel
 @onready var yearLabel: Label = $YearLabel
@@ -83,7 +84,7 @@ func DeleteIcons():
 	for icon in icons:
 		icon.queue_free()
 
-func MonthLength(month, year) -> int:
+static func MonthLength(month, year) -> int:
 	#print(month)
 	if(month == 2 and (year % 4) == 0 and (year % 100) != 0):
 		return 29
@@ -92,7 +93,6 @@ func MonthLength(month, year) -> int:
 	if(month == 4 or month == 6 or month == 9 or month == 11):
 		return 30
 	return 31
-	
 
 func MakeIcon(column: int,row: int,day: int, thisMonth: bool) -> void:
 	var scene: TextureButton = buttonScene.instantiate() as TextureButton
