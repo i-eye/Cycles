@@ -6,10 +6,12 @@ class_name DaySelections
 @onready var yearLabel: Label = $YearLabel
 var viewYear: int
 var viewMonth: int
+
+var today
 #@export var otherMonth: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var today = Time.get_datetime_dict_from_system()
+	today = Time.get_datetime_dict_from_system()
 	viewMonth = today.month
 	viewYear = today.year
 	#print(viewMonth)
@@ -104,6 +106,10 @@ func MakeIcon(column: int,row: int,day: int, thisMonth: bool) -> void:
 		scene.isThisMonth = false
 	elif(SymptomInformation.hasSubstance(day,viewMonth,viewYear)):
 		scene.texture_normal = (load("res://Sprites/SymptomDay.png"))
+	
+	if(thisMonth and day == today.day and viewYear == today.year):
+		scene.texture_normal = (load("res://Sprites/TodayIcon.png"))
+	
 	if(thisMonth and SymptomInformation.isPeriod(day,viewMonth,viewYear)):
 		scene.setTint(true)
 	
@@ -125,7 +131,9 @@ func _on_left_arrow_pressed():
 		viewYear -= 1
 	DeleteIcons()
 	CreateIcons(viewMonth,viewYear)
-	
+	var buttons = $DaySelections.get_children()
+	for button in buttons:
+		button.symptom = $ModeToggle.is_pressed()
 
 
 func _on_right_arrow_pressed():
@@ -135,9 +143,15 @@ func _on_right_arrow_pressed():
 		viewYear += 1 # Replace with function body.
 	DeleteIcons()
 	CreateIcons(viewMonth,viewYear)
-
+	var buttons = $DaySelections.get_children()
+	for button in buttons:
+		button.symptom = $ModeToggle.is_pressed()
 
 func _on_mode_toggle_toggled(button_pressed):
+	if(button_pressed):
+		$ModeToggle/Label.text = "Log Period"
+	else:
+		$ModeToggle/Label.text = "Log Symptoms"
 	var buttons = $DaySelections.get_children()
 	for button in buttons:
 		button.symptom = button_pressed

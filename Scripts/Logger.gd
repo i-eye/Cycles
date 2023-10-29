@@ -22,7 +22,7 @@ func readyTwo():
 		fillData(info.getData(day,month,year))
 
 func fillData(information: SymptomInformation.SymptomsObject):
-	print(str(information.day))
+	#(str(information.day))
 	var buttons = $SymptomButtons.get_children()
 	for button in buttons:
 		button.toggleBool(false)
@@ -34,6 +34,7 @@ func fillData(information: SymptomInformation.SymptomsObject):
 			2: if(information.exercise.has(string)): button.toggleBool(true)
 			3: if(information.medication.has(string)): button.toggleBool(true)
 			4: if(information.other.has(string)): button.toggleBool(true)
+	$TextEdit.text = information.comments
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -87,6 +88,8 @@ func logSymptoms():
 				4: 
 					object.other.sort()
 					if(object.other.has(string)): object.other.remove_at(object.other.bsearch(string))
+	if(!$TextEdit.text.is_empty()):
+		object.comments = $TextEdit.text
 	info.appendData(object)
 
 

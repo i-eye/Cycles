@@ -6,7 +6,7 @@ var symptom = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Tint.modulate = Color(1,1,1,.65)
+	$Tint.modulate = Color(1,1,1,.60)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,7 +19,7 @@ func ToggleTint():
 	$Tint.visible = !$Tint.visible
 
 func _on_button_down():
-	print(symptom)
+	#print(symptom)
 	if isThisMonth:
 		if(!symptom):
 			var scene = SymptomScene.instantiate()

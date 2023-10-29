@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var number: Label = $TextureBackground/DayDisplay/DayNumber
-@onready var affix: Label = $TextureBackground/DayDisplay/DayAffix
+@onready var number: Label = $MainBackground/DayDisplay/DayNumber
+@onready var affix: Label = $MainBackground/DayDisplay/DayAffix
 @export var symptomScene: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,7 +14,7 @@ func _ready():
 	elif(day % 10 == 3 and day != 13): affixText = "rd"
 	else: affixText = "th"
 	affix.text = affixText
-	pass
+	$MainBackground/NextLabel.text = calculateNextPeriod()
 
 func _on_log_symptoms_button_button_down():
 	var scene = symptomScene.instantiate()
@@ -51,11 +51,11 @@ func calculateNextPeriod() -> String:
 		if(timeLeft == 0 or timeLeft == 1):
 			return "Last Day!"
 		elif(timeLeft == -1 or timeLeft == -2):
-			return "Lasting long\n"+str(-1 * timeLeft)+" days over"
+			return "Lasting long\n~"+str(-1 * timeLeft)+" days over"
 		elif(timeLeft <= -3):
-			return str(-1 * timeLeft) +" days over\n seek medical attention"
+			return str(-1 * timeLeft) +" days over\nseek medical \nattention"
 		else:
-			return str(timeLeft) + " days left"
+			return "~"+str(timeLeft) + " days left"
 	else:
 		var isPeriod: bool = false
 		var calcDay: int = d
@@ -80,11 +80,13 @@ func calculateNextPeriod() -> String:
 				break;
 		var nextPeriod: int = periodLength - day
 		if(noData):
-			return "No Data \n Log Something!"
+			return "No Data \nLog Something!"
 		if(nextPeriod > 0):
-			return "In "+str(nextPeriod)+" days"
+			if(nextPeriod == 1):
+				return "In ~"+str(nextPeriod)+" day" 
+			return "In ~"+str(nextPeriod)+" days"
 		elif(nextPeriod == 0):
 			return "Period today :("
 		else:
-			return "Period should've occured"
+			return "Period should've \noccured already"
 	return "Error"

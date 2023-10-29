@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://csedbbm8v73kt"]
+[gd_scene load_steps=11 format=3 uid="uid://csedbbm8v73kt"]
 
 [ext_resource type="PackedScene" uid="uid://cudoxii0cxlr" path="res://Scenes/LogSymptoms.tscn" id="2_3iuye"]
 [ext_resource type="Script" path="res://Scripts/MainController.gd" id="2_f0d3i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b5tuojfbvwt3n" path="res://Sprites/Navigation Buttons/LogSymptoms.png" id="4_of6ru"]
 [ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="4_xawvl"]
 [ext_resource type="Texture2D" uid="uid://b6l5u57y8qrjx" path="res://Sprites/Navigation Buttons/Calendar.jpg" id="5_ymo6l"]
+[ext_resource type="Texture2D" uid="uid://dygeto8ng6n64" path="res://Sprites/Background/SomeGrass.png" id="7_u114f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lk47r"]
 line_spacing = 0.0
@@ -18,24 +19,30 @@ font_size = 55
 outline_size = 10
 outline_color = Color(0.376471, 0.482353, 0.341176, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_qluqt"]
+font_size = 22
+outline_size = 3
+outline_color = Color(0.376471, 0.482353, 0.341176, 1)
+
 [node name="Home" type="Node2D"]
 script = ExtResource("2_f0d3i")
 symptomScene = ExtResource("2_3iuye")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="BackgroundColor" type="ColorRect" parent="."]
 offset_right = 576.0
 offset_bottom = 1024.0
 color = Color(0.878431, 0.937255, 0.768627, 1)
 
-[node name="TextureBackground" type="TextureRect" parent="."]
+[node name="MainBackground" type="TextureRect" parent="."]
+offset_top = 203.0
 offset_right = 576.0
-offset_bottom = 823.0
+offset_bottom = 1026.0
 texture = ExtResource("3_foqcg")
 expand_mode = 5
 
-[node name="DayDisplay" type="Node2D" parent="TextureBackground"]
+[node name="DayDisplay" type="Node2D" parent="MainBackground"]
 
-[node name="DayNumber" type="Label" parent="TextureBackground/DayDisplay"]
+[node name="DayNumber" type="Label" parent="MainBackground/DayDisplay"]
 offset_left = 152.0
 offset_top = 284.0
 offset_right = 324.0
@@ -45,7 +52,7 @@ text = "12
 label_settings = SubResource("LabelSettings_lk47r")
 horizontal_alignment = 2
 
-[node name="DayAffix" type="Label" parent="TextureBackground/DayDisplay"]
+[node name="DayAffix" type="Label" parent="MainBackground/DayDisplay"]
 offset_left = 315.0
 offset_top = 323.0
 offset_right = 389.0
@@ -53,25 +60,43 @@ offset_bottom = 389.0
 text = "th"
 label_settings = SubResource("LabelSettings_g3cd7")
 
+[node name="NextLabel" type="Label" parent="MainBackground"]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 493.0
+offset_right = 474.0
+offset_bottom = 619.0
+text = "dada
+dada"
+label_settings = SubResource("LabelSettings_qluqt")
+
 [node name="LogSymptomsButton" type="Button" parent="."]
 offset_left = 68.0
-offset_top = 113.0
+offset_top = 316.0
 offset_right = 769.0
-offset_bottom = 376.0
+offset_bottom = 579.0
 scale = Vector2(0.29, 0.29)
 icon = ExtResource("4_of6ru")
 flat = true
 
 [node name="CalendarButton" type="Button" parent="."]
 offset_left = 513.0
-offset_top = 1.0
+offset_top = 204.0
 offset_right = 671.0
-offset_bottom = 159.0
+offset_bottom = 362.0
 scale = Vector2(0.4, 0.4)
 icon = ExtResource("5_ymo6l")
 flat = true
 script = ExtResource("4_xawvl")
 scene = "res://Scenes/Calender.tscn"
+
+[node name="Grass" type="TextureRect" parent="."]
+offset_top = -37.0
+offset_right = 576.0
+offset_bottom = 208.738
+texture = ExtResource("7_u114f")
+expand_mode = 5
+flip_v = true
 
 [connection signal="button_down" from="LogSymptomsButton" to="." method="_on_log_symptoms_button_button_down"]
 [connection signal="button_down" from="CalendarButton" to="CalendarButton" method="_on_button_down"]

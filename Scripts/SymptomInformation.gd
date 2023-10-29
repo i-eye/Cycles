@@ -36,7 +36,9 @@ func loadInfo():
 				object.exercise = objects[5].split(";")
 				object.medication = objects[6].split(";")
 				object.other = objects[7].split(";")
-				print(objects[9])
+				object.comments = objects[8]
+				#if(objects.size() > 10):
+					#print(objects[9])
 				object.isPeriod = (int(objects[9]) == 1)
 				symptoms.append(object)
 			else:
@@ -51,7 +53,7 @@ func saveInfo():
 			num = 1
 		else:
 			num = 0
-		print(num)
+		#print(num)
 		if(hasSubstance(object.day,object.month,object.year) or 
 		   isPeriod(object.day,object.month,object.year)):
 			var array: Array[String] = [str(object.day),str(object.month),str(object.year),SMake(object.mood),SMake(object.physical),SMake(object.exercise),SMake(object.medication),SMake(object.other),object.comments, str(num)]
@@ -84,8 +86,9 @@ func hasSubstance(d,m,y) -> bool:
 				(!symptom.physical.is_empty() and !symptom.physical[0].is_empty()) or
 				(!symptom.exercise.is_empty() and !symptom.exercise[0].is_empty()) or
 				(!symptom.medication.is_empty() and !symptom.medication[0].is_empty()) or
-				(!symptom.other.is_empty() and !symptom.other[0].is_empty()) ):
-				print(symptom.mood)
+				(!symptom.other.is_empty() and !symptom.other[0].is_empty()) or 
+				(!symptom.comments.is_empty() and symptom.comments != "") ):
+				#print(symptom.mood)
 				return true
 	return false
 func isPeriod(d,m,y) -> bool:
@@ -106,7 +109,7 @@ func appendData(data: SymptomsObject):
 	if(hasData(data.day,data.month,data.year)):
 		for i in range(symptoms.size()):
 			if(symptoms[i].day == data.day and symptoms[i].month == data.month and symptoms[i].year == data.year):
-				print(i)
+				#(i)
 				symptoms[i] = data
 	else:
 		symptoms.append(data)

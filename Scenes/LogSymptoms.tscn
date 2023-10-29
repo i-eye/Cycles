@@ -1,14 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://cudoxii0cxlr"]
+[gd_scene load_steps=9 format=3 uid="uid://cudoxii0cxlr"]
 
 [ext_resource type="Script" path="res://Scripts/Logger.gd" id="1_hk3xy"]
 [ext_resource type="Texture2D" uid="uid://cce24wum7oox1" path="res://Sprites/Navigation Buttons/Back.png" id="2_e4wil"]
 [ext_resource type="Texture2D" uid="uid://cyod6osi0ektm" path="res://Sprites/Background/Log2NoText.png" id="3_g0h7u"]
 [ext_resource type="Texture2D" uid="uid://btykff0rvfr6" path="res://Sprites/SymptomLogButton.png" id="5_iebpi"]
 [ext_resource type="PackedScene" uid="uid://ci3p7vay8um04" path="res://Scenes/symptom_button.tscn" id="5_xo22q"]
+[ext_resource type="Texture2D" uid="uid://dygeto8ng6n64" path="res://Sprites/Background/SomeGrass.png" id="6_gxp66"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cuyqo"]
 font_size = 40
 font_color = Color(0.376471, 0.482353, 0.341176, 1)
+
+[sub_resource type="Theme" id="Theme_38mh6"]
+default_font_size = 20
+TextEdit/colors/background_color = Color(0.870588, 0.933333, 0.756863, 0.137255)
+TextEdit/colors/caret_background_color = Color(1, 0.470588, 0.929412, 1)
+TextEdit/colors/font_outline_color = Color(0.760784, 0.878431, 0.45098, 1)
+TextEdit/constants/outline_size = 0
 
 [node name="LogSymptoms" type="Node2D"]
 script = ExtResource("1_hk3xy")
@@ -442,6 +450,23 @@ offset_right = 703.0
 offset_bottom = 1088.0
 scale = Vector2(0.43, 0.43)
 texture_normal = ExtResource("5_iebpi")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 15.0
+offset_top = 922.0
+offset_right = 469.0
+offset_bottom = 1017.0
+theme = SubResource("Theme_38mh6")
+placeholder_text = "Write Additional Notes"
+wrap_mode = 1
+
+[node name="Grass" type="TextureRect" parent="."]
+offset_top = -118.0
+offset_right = 576.0
+offset_bottom = 127.738
+texture = ExtResource("6_gxp66")
+expand_mode = 5
+flip_v = true
 
 [connection signal="button_down" from="BackButton" to="." method="_on_back_button_down"]
 [connection signal="button_down" from="LogButton" to="." method="_on_log_button_button_down"]

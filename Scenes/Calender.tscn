@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cce24wum7oox1" path="res://Sprites/Navigation Buttons/Back.png" id="6_34sei"]
 [ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="7_dpnqj"]
 [ext_resource type="Texture2D" uid="uid://f1vghf2x8wea" path="res://Sprites/Navigation Buttons/LogToggle.png" id="8_ywpfl"]
-[ext_resource type="Texture2D" uid="uid://ciq4qr3g42dwa" path="res://Sprites/otherDay.png" id="9_wo8g7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x0n64"]
 font_size = 60
@@ -17,6 +16,10 @@ font_color = Color(0.376471, 0.482353, 0.341176, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_v1ind"]
 font_size = 60
 font_color = Color(0.376471, 0.482353, 0.341176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7n4hx"]
+font_size = 55
+font_color = Color(0.360784, 0.462745, 0.32549, 1)
 
 [node name="Calender" type="Node2D"]
 script = ExtResource("2_pp83c")
@@ -96,7 +99,16 @@ offset_bottom = 1105.0
 scale = Vector2(0.43, 0.43)
 toggle_mode = true
 texture_normal = ExtResource("8_ywpfl")
-texture_pressed = ExtResource("9_wo8g7")
+
+[node name="Label" type="Label" parent="ModeToggle"]
+layout_mode = 0
+offset_left = 79.0697
+offset_top = 60.4651
+offset_right = 470.07
+offset_bottom = 139.465
+text = "Log Symptoms"
+label_settings = SubResource("LabelSettings_7n4hx")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="LeftArrow" to="." method="_on_left_arrow_pressed"]
 [connection signal="pressed" from="RightArrow" to="." method="_on_right_arrow_pressed"]
