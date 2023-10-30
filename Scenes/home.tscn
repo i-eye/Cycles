@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bx0ij31u2nnan" path="res://Sprites/Background/MainBackground.jpg" id="3_foqcg"]
 [ext_resource type="Texture2D" uid="uid://b5tuojfbvwt3n" path="res://Sprites/Navigation Buttons/LogSymptoms.png" id="4_of6ru"]
 [ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="4_xawvl"]
-[ext_resource type="Texture2D" uid="uid://b6l5u57y8qrjx" path="res://Sprites/Navigation Buttons/Calendar.jpg" id="5_ymo6l"]
+[ext_resource type="Texture2D" uid="uid://cqgagdbuw6jfd" path="res://Sprites/Navigation Buttons/Calendar.png" id="6_m2td1"]
 [ext_resource type="Texture2D" uid="uid://dygeto8ng6n64" path="res://Sprites/Background/SomeGrass.png" id="7_u114f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lk47r"]
@@ -79,17 +79,6 @@ scale = Vector2(0.29, 0.29)
 icon = ExtResource("4_of6ru")
 flat = true
 
-[node name="CalendarButton" type="Button" parent="."]
-offset_left = 513.0
-offset_top = 204.0
-offset_right = 671.0
-offset_bottom = 362.0
-scale = Vector2(0.4, 0.4)
-icon = ExtResource("5_ymo6l")
-flat = true
-script = ExtResource("4_xawvl")
-scene = "res://Scenes/Calender.tscn"
-
 [node name="Grass" type="TextureRect" parent="."]
 offset_top = -37.0
 offset_right = 576.0
@@ -97,6 +86,17 @@ offset_bottom = 208.738
 texture = ExtResource("7_u114f")
 expand_mode = 5
 flip_v = true
+
+[node name="CalendarButton" type="Button" parent="."]
+offset_left = 474.0
+offset_top = 147.0
+offset_right = 632.0
+offset_bottom = 305.0
+scale = Vector2(0.65, 0.65)
+icon = ExtResource("6_m2td1")
+flat = true
+script = ExtResource("4_xawvl")
+scene = "res://Scenes/Calender.tscn"
 
 [connection signal="button_down" from="LogSymptomsButton" to="." method="_on_log_symptoms_button_button_down"]
 [connection signal="button_down" from="CalendarButton" to="CalendarButton" method="_on_button_down"]

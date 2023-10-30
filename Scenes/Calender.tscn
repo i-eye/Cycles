@@ -102,11 +102,11 @@ texture_normal = ExtResource("8_ywpfl")
 
 [node name="Label" type="Label" parent="ModeToggle"]
 layout_mode = 0
-offset_left = 79.0697
+offset_left = 79.0698
 offset_top = 60.4651
 offset_right = 470.07
 offset_bottom = 139.465
-text = "Log Symptoms"
+text = "Log Period"
 label_settings = SubResource("LabelSettings_7n4hx")
 horizontal_alignment = 1
 

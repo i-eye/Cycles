@@ -42,6 +42,7 @@ func _process(delta):
 
 
 func _on_back_button_down():
+	logSymptoms(false)
 	var parent = get_parent()
 	if(parent and parent.name == "Calender"):
 		parent.DeleteIcons()
@@ -50,7 +51,7 @@ func _on_back_button_down():
 	queue_free()
 		#get_tree().change_scene_to_file("res://Scenes/home.tscn")
 
-func logSymptoms():
+func logSymptoms(period: bool):
 	var object: SymptomInformation.SymptomsObject
 	if(!info.hasData(day,month,year)):
 		object = info.SymptomsObject.new()
@@ -90,12 +91,14 @@ func logSymptoms():
 					if(object.other.has(string)): object.other.remove_at(object.other.bsearch(string))
 	if(!$TextEdit.text.is_empty()):
 		object.comments = $TextEdit.text
+	if(period):
+		object.isPeriod = true
 	info.appendData(object)
 
 
 func _on_log_button_button_down():
 	#print("backButton")
-	logSymptoms()
+	logSymptoms(true)
 	var parent = get_parent()
 	if(parent and parent.name == "Calender"):
 		parent.DeleteIcons()

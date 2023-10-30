@@ -82,12 +82,13 @@ func hasData(d,m,y) -> bool:
 func hasSubstance(d,m,y) -> bool:
 	for symptom in symptoms:
 		if(symptom.day == d and symptom.month == m and symptom.year == y):
-			if( (!symptom.mood.is_empty() and !symptom.mood[0].is_empty()) or
-				(!symptom.physical.is_empty() and !symptom.physical[0].is_empty()) or
-				(!symptom.exercise.is_empty() and !symptom.exercise[0].is_empty()) or
-				(!symptom.medication.is_empty() and !symptom.medication[0].is_empty()) or
-				(!symptom.other.is_empty() and !symptom.other[0].is_empty()) or 
-				(!symptom.comments.is_empty() and symptom.comments != "") ):
+			if( (!symptom.mood.is_empty() and symptom.mood[0] != "") or
+				(!symptom.physical.is_empty() and symptom.physical[0] != "") or
+				(!symptom.exercise.is_empty() and symptom.exercise[0] != "") or
+				(!symptom.medication.is_empty() and symptom.medication[0] != "") or
+				(!symptom.other.is_empty() and symptom.other[0] != "") or
+				(!symptom.comments.is_empty() and symptom.comments != "") 
+				):
 				#print(symptom.mood)
 				return true
 	return false

@@ -107,7 +107,7 @@ func MakeIcon(column: int,row: int,day: int, thisMonth: bool) -> void:
 	elif(SymptomInformation.hasSubstance(day,viewMonth,viewYear)):
 		scene.texture_normal = (load("res://Sprites/SymptomDay.png"))
 	
-	if(thisMonth and day == today.day and viewYear == today.year):
+	if(thisMonth and viewMonth == today.month and day == today.day and viewYear == today.year):
 		scene.texture_normal = (load("res://Sprites/TodayIcon.png"))
 	
 	if(thisMonth and SymptomInformation.isPeriod(day,viewMonth,viewYear)):
@@ -149,9 +149,9 @@ func _on_right_arrow_pressed():
 
 func _on_mode_toggle_toggled(button_pressed):
 	if(button_pressed):
-		$ModeToggle/Label.text = "Log Period"
+		$ModeToggle/Label.text = "Save"
 	else:
-		$ModeToggle/Label.text = "Log Symptoms"
+		$ModeToggle/Label.text = "Log Period"
 	var buttons = $DaySelections.get_children()
 	for button in buttons:
 		button.symptom = button_pressed
