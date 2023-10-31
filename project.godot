@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Cycles"
+config/name="Heartfelt Health"
 run/main_scene="res://Scenes/home.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://Sprites/Icon/fullicon.png"

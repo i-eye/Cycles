@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cudoxii0cxlr"]
+[gd_scene load_steps=8 format=3 uid="uid://cudoxii0cxlr"]
 
 [ext_resource type="Script" path="res://Scripts/Logger.gd" id="1_hk3xy"]
 [ext_resource type="Texture2D" uid="uid://cce24wum7oox1" path="res://Sprites/Navigation Buttons/Back.png" id="2_e4wil"]
 [ext_resource type="Texture2D" uid="uid://cyod6osi0ektm" path="res://Sprites/Background/Log2NoText.png" id="3_g0h7u"]
 [ext_resource type="Texture2D" uid="uid://btykff0rvfr6" path="res://Sprites/SymptomLogButton.png" id="5_iebpi"]
 [ext_resource type="PackedScene" uid="uid://ci3p7vay8um04" path="res://Scenes/symptom_button.tscn" id="5_xo22q"]
+[ext_resource type="Texture2D" uid="uid://dygeto8ng6n64" path="res://Sprites/Background/SomeGrass.png" id="6_c1v8t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cuyqo"]
 font_size = 40
@@ -449,6 +450,14 @@ offset_top = 921.0
 offset_right = 468.0
 offset_bottom = 1017.0
 placeholder_text = "Additional Notes Here"
+
+[node name="Grass" type="TextureRect" parent="."]
+offset_top = -119.0
+offset_right = 576.0
+offset_bottom = 126.738
+texture = ExtResource("6_c1v8t")
+expand_mode = 5
+flip_v = true
 
 [connection signal="button_down" from="BackButton" to="." method="_on_back_button_down"]
 [connection signal="button_down" from="LogButton" to="." method="_on_log_button_button_down"]
