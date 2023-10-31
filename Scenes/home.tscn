@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://csedbbm8v73kt"]
+[gd_scene load_steps=12 format=3 uid="uid://csedbbm8v73kt"]
 
 [ext_resource type="PackedScene" uid="uid://cudoxii0cxlr" path="res://Scenes/LogSymptoms.tscn" id="2_3iuye"]
 [ext_resource type="Script" path="res://Scripts/MainController.gd" id="2_f0d3i"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/ButtonLoader.gd" id="4_xawvl"]
 [ext_resource type="Texture2D" uid="uid://cqgagdbuw6jfd" path="res://Sprites/Navigation Buttons/Calendar.png" id="6_m2td1"]
 [ext_resource type="Texture2D" uid="uid://dygeto8ng6n64" path="res://Sprites/Background/SomeGrass.png" id="7_u114f"]
+[ext_resource type="Texture2D" uid="uid://dr2m67hf3vv1k" path="res://Sprites/HeartfeltHealthLogo.png" id="8_y0bvc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lk47r"]
 line_spacing = 0.0
@@ -47,7 +48,7 @@ offset_left = 152.0
 offset_top = 284.0
 offset_right = 324.0
 offset_bottom = 489.0
-text = "12
+text = "err
 "
 label_settings = SubResource("LabelSettings_lk47r")
 horizontal_alignment = 2
@@ -57,7 +58,7 @@ offset_left = 315.0
 offset_top = 323.0
 offset_right = 389.0
 offset_bottom = 389.0
-text = "th"
+text = "err"
 label_settings = SubResource("LabelSettings_g3cd7")
 
 [node name="NextLabel" type="Label" parent="MainBackground"]
@@ -66,8 +67,7 @@ offset_left = 314.0
 offset_top = 493.0
 offset_right = 474.0
 offset_bottom = 619.0
-text = "dada
-dada"
+text = "error"
 label_settings = SubResource("LabelSettings_qluqt")
 
 [node name="LogSymptomsButton" type="Button" parent="."]
@@ -97,6 +97,21 @@ icon = ExtResource("6_m2td1")
 flat = true
 script = ExtResource("4_xawvl")
 scene = "res://Scenes/Calender.tscn"
+
+[node name="Logo" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 158.0
+offset_top = 152.0
+offset_right = 325.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("8_y0bvc")
 
 [connection signal="button_down" from="LogSymptomsButton" to="." method="_on_log_symptoms_button_button_down"]
 [connection signal="button_down" from="CalendarButton" to="CalendarButton" method="_on_button_down"]

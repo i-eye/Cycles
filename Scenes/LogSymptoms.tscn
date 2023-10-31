@@ -205,36 +205,36 @@ symptomName = "Nausea"
 [node name="Bloating" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
 layout_mode = 0
 offset_left = -183.0
-offset_top = 228.0
+offset_top = 226.0
 offset_right = 58.0
-offset_bottom = 284.0
+offset_bottom = 282.0
 symptomType = 1
 symptomName = "Bloating"
 
 [node name="Constipation" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
 layout_mode = 0
 offset_left = -92.0
-offset_top = 228.0
+offset_top = 226.0
 offset_right = 149.0
-offset_bottom = 284.0
+offset_bottom = 282.0
 symptomType = 1
 symptomName = "Constipation"
 
 [node name="Insomnia" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
 layout_mode = 0
 offset_left = 37.0
-offset_top = 228.0
+offset_top = 226.0
 offset_right = 278.0
-offset_bottom = 284.0
+offset_bottom = 282.0
 symptomType = 1
 symptomName = "Insomnia"
 
 [node name="Tender Breasts" parent="SymptomButtons" instance=ExtResource("5_xo22q")]
 layout_mode = 0
 offset_left = 137.0
-offset_top = 228.0
+offset_top = 226.0
 offset_right = 378.0
-offset_bottom = 284.0
+offset_bottom = 282.0
 symptomType = 1
 symptomName = "Tender Breasts"
 
