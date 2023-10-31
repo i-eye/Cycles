@@ -11,18 +11,20 @@ class SymptomsObject extends Object:
 	var other: PackedStringArray
 	var comments: String
 	var isPeriod: bool
-
+var directory
 var symptoms: Array[SymptomsObject]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#print(SMake(PackedStringArray(["game","lame"])))
+	directory = OS.get_user_data_dir()
 	loadInfo()
+	
 	pass
 
 
 func loadInfo():
-	if(FileAccess.file_exists("user://savegame.save")):
-		var saved_game = FileAccess.open("user://savegame.save", FileAccess.READ)
+	if(FileAccess.file_exists(directory+"/savegame.txt")):
+		var saved_game = FileAccess.open(directory+"/savegame.txt", FileAccess.READ)
 		while(true):
 			var objects = saved_game.get_csv_line(",")
 			print(objects)
@@ -45,7 +47,7 @@ func loadInfo():
 				break
 
 func saveInfo():
-	var save_game = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save_game = FileAccess.open(directory+"/savegame.txt", FileAccess.WRITE)
 	for object in symptoms:
 		#print(object.mood)
 		var num
@@ -114,3 +116,4 @@ func appendData(data: SymptomsObject):
 				symptoms[i] = data
 	else:
 		symptoms.append(data)
+	saveInfo()
